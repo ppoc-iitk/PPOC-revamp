@@ -11,11 +11,11 @@ body {
 
 :root {
   --color-primary: #191D2B;
-  --color-secondary: #745ba7;
+  --color-secondary: #A682EE;
   --color-white: #FFFFFF;
   --color-black: #000000;
   --color-violet-0: #8D5BA7;
-  --color-violet-0: #A682EE;
+  --color-violet-0: #745ba7;
   --color-grey0: #f8f8f8;
   --color-grey-1: #dbe1e8;
   --color-grey-2: #b2becd;
@@ -208,6 +208,125 @@ section {
   line-height: 2rem;
 }
 
+.about-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 3.5rem;
+  padding-bottom: 5rem;
+}
+.about-container .right-about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+.about-container .right-about .about-item {
+  border: 1px solid var(--color-grey-5);
+  border-radius: 5px;
+  transition: var(--ease);
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+}
+.about-container .right-about .about-item:hover {
+  cursor: default;
+  transform: translateY(-5px);
+  border: 1px solid var(--color-secondary);
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.32);
+}
+.about-container .right-about .about-item .abt-text {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.about-container .right-about .about-item .abt-text .large-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+.about-container .right-about .about-item .abt-text .small-text {
+  padding-left: 3rem;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--color-grey-1);
+  letter-spacing: 2px;
+}
+.about-container .right-about .about-item .abt-text .small-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 2rem;
+  height: 2px;
+  background-color: var(--color-grey-5);
+}
+.about-container .left-about {
+  padding-right: 5rem;
+}
+.about-container .left-about p {
+  line-height: 2rem;
+  padding: 1rem;
+  color: var(--color-grey-1);
+}
+.about-container .left-about h4 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.stat-title {
+  text-transform: uppercase;
+  color: var(--color-violet-0);
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1.5rem 0;
+  position: relative;
+}
+.stat-title::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 40%;
+  height: 1px;
+  background-color: var(--color-grey-5);
+  transform: translateX(-50%);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  padding-bottom: 3rem;
+}
+.skills .skill-item {
+  position: relative;
+  padding: 1rem 1rem;
+  border-radius: 15px;
+  border-left: 1px solid var(--color-grey-5);
+  transition: var(--ease);
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.2);
+}
+.skills .skill-item:hover {
+  cursor: default;
+  background-color: var(--color-secondary);
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.32);
+}
+.skills .skill-item img {
+  width: 100%;
+  height: 75%;
+  transition: var(--ease);
+}
+.skills .skill-item img:hover {
+  filter: grayscale(100%);
+}
+.skills .skill-item h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+.skills .skill-item h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: normal;
+}
+
 .btn-con {
   display: flex;
   align-self: flex-start;
@@ -251,4 +370,28 @@ section {
   height: 100%;
   background-color: var(--color-secondary);
   transform: translateX(0%);
+}
+
+.main-title {
+  text-align: center;
+}
+.main-title h2 {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 4rem;
+  font-weight: 700;
+}
+.main-title h2 span {
+  color: var(--color-secondary);
+}
+.main-title h2 .bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: var(--color-grey-5);
+  transition: var(--ease);
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  font-weight: 800;
+  font-size: 6.3rem;
 }/*# sourceMappingURL=style.css.map */
