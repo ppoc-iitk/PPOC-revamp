@@ -431,6 +431,48 @@ section {
   background-color: var(--color-grey-5);
 }
 
+.sponsors-marquee {
+  width: 100%;
+  height: 15vw;
+  border: 5px solid var(--color-secondary);
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+.sponsors-marquee .sponsors {
+  display: flex;
+  list-style: none;
+  padding: 2.5vw;
+  -webkit-animation: scrolling 15s linear infinite;
+          animation: scrolling 15s linear infinite;
+}
+.sponsors-marquee .sponsors li {
+  flex: 0 0 10vw;
+  margin: 0 1vw;
+  flex-shrink: 0;
+}
+.sponsors-marquee .sponsors li img {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+@-webkit-keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translatex(-156vw);
+  }
+}
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translatex(-156vw);
+  }
+}
+
 .btn-con {
   display: flex;
   align-self: flex-start;
