@@ -256,7 +256,6 @@ section{
             line-height:2rem;
             padding: 1rem;
             color: var(--color-grey-1);
-            text-align: justify;
         }
         h4{
             font-size: 2rem;
@@ -458,6 +457,81 @@ section{
     
 }
 
+//Contact Section
+.contact-content-con{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 5rem;
+    .left-contact{
+        flex: 2;
+        h4{
+            margin-top: 1rem;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        p{
+            margin: 1rem 0;
+            line-height: 2rem;
+        }
+
+        .contact-info{
+            .contact-info{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+                p{
+                    margin: .3rem 0 !important;
+                    padding: 0;
+                }
+                .icon{
+                    display: grid;
+                    grid-template-columns: 40px 1fr;
+                    i{
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+
+        .contact-icon{
+            display: flex;
+            margin-top: 2rem;
+            position: absolute;
+            left: 43%;
+            a{
+                display: flex;
+                align-items: center;
+                color: var(--color-white);
+                background-color: var(--color-grey-5);
+                cursor: pointer;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 0 0.4rem;
+                transition: var(--ease);
+                &:hover{
+                    background-color: var(--color-secondary);
+                    i{
+                        color: var(--color-primary);
+                    }
+                }
+                i{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.7rem;
+                }
+            }
+        }
+    }
+
+}
 
 //Independent Components
 .btn-con{
