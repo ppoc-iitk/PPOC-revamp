@@ -79,7 +79,6 @@ body{
 .button{
     z-index: 1000;
     position: fixed;
-    padding: 1rem;
     cursor: pointer;
     background-color: var(--color-grey-4);
     width: 50px;
@@ -88,7 +87,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
     margin-left: 2rem;
     box-shadow: var(--box-shadow-1);
     transition: var(--ease);
@@ -112,5 +110,38 @@ body{
     right: 5%;
     z-index: 99;
     font-size: 18px;
-    transition: 0.3s ease-in-out;
-  }
+    transition: var(--ease);
+}
+
+.visible{
+    visibility: visible !important; 
+    animation: scaleAnimVisi 0.5s ease-in-out;
+    @keyframes scaleAnimVisi {
+        0%{
+            opacity: 0%;
+        } 
+        100%{
+            opacity: 100%;
+        }       
+    }
+}
+
+.hidden{
+    visibility: hidden !important; 
+    animation: scaleAnimHide 0.5s ease-in-out;
+    @keyframes scaleAnimHide {
+        0%{
+            opacity: 100%;
+        } 
+        100%{
+            opacity: 0%;
+        }       
+    }
+}
+
+.top-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}

@@ -3,6 +3,21 @@ const sectBtns = document.querySelectorAll('.controls');
 const sectBtn = document.querySelectorAll('.control')
 const allSections = document.querySelectorAll('.main-content')
 
+var mainlogo = document.getElementById("main-logo");
+
+window.onscroll = function() {scrollFunctions()};
+
+function scrollFunctions() {
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+        mainlogo.classList.add('small')
+        mainlogo.classList.remove('large')
+    }
+    else {
+        mainlogo.classList.remove('small')
+        mainlogo.classList.add('large')
+    }
+}
+
 function PageTransitions(){
     //Button click active class
     for(let i=0;i < sectBtn.length; i++){
