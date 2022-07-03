@@ -5,6 +5,9 @@
     list-style: none
 }
 
+html{
+    scroll-behavior: smooth;
+}
 body{
     animation: scaleAnim 0.5s ease-in-out;
     @keyframes scaleAnim {
@@ -88,9 +91,26 @@ body{
     margin-top: 2rem;
     margin-left: 2rem;
     box-shadow: var(--box-shadow-1);
+    transition: var(--ease);
     i{
         font-size: 1.2rem;
-        color: var(--color-violet-0);
+        color: var(--color-secondary);
         pointer-events: none;
     }    
+    &:hover{
+        background-color: var(--color-secondary);
+        i{
+            color: #FFFFFF;
+        }
+    }
 }
+
+#scrollToTop {
+    visibility: hidden;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 99;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+  }

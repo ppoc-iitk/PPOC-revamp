@@ -100,6 +100,8 @@ section{
 }
 
 //Controls
+
+
 .controls{
     position: fixed;
     z-index: 10;
@@ -131,7 +133,7 @@ section{
         box-shadow: var(--box-shadow-1);
         i{
             font-size: 1.2rem;
-            color: var(--color-violet-0);
+            color: var(--color-secondary);
             pointer-events: none;
         }    
     }
@@ -585,6 +587,39 @@ section{
 .btn-con{
     display: flex;
     align-self: flex-start;
+}
+
+.main-logo{
+    position: fixed;
+    right: 3%;
+    top: 3%;
+    z-index: 1000;
+}
+
+.know-more{
+    position: relative;
+    left: 42%;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: var(--color-grey-4);
+    width: 15%;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--ease);
+    margin: .7rem 0;
+    box-shadow: var(--box-shadow-1);
+    i{
+        font-size: 1.2rem;
+        color: var(--color-violet-0);
+        pointer-events: none;
+    }    
+    &:hover{
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+    }
 }
 
 .main-btn{
