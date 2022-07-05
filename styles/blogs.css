@@ -124,6 +124,35 @@ body {
   transition: var(--ease);
 }
 
+.article-items {
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  padding-bottom: 3rem;
+}
+.article-items .article-item {
+  display: flex;
+  align-items: center;
+  margin-right: 4rem;
+  margin-left: 4rem;
+  position: relative;
+  padding: 0.5rem 3rem;
+  border-radius: 15px;
+  border-left: 1px solid var(--color-grey-5);
+  transition: var(--ease);
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.2);
+}
+.article-items .article-item:hover {
+  cursor: default;
+  background-color: var(--color-secondary);
+  box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.32);
+}
+.article-items .article-item span {
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
 .visible {
   visibility: visible !important;
   -webkit-animation: scaleAnimVisi 0.5s ease-in-out;
