@@ -202,4 +202,7 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 2rem;
+}
+.top-logo img {
+  height: 80px;
 }/*# sourceMappingURL=blogs.css.map */
