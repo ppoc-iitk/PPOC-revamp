@@ -1,5 +1,5 @@
 /* ===================================================================
- * Glint - Main JS
+ * Standout - Main JS
  *
  * ------------------------------------------------------------------- */
 
@@ -45,238 +45,203 @@
     };
 
 
+   /* Pretty Print
+    * -------------------------------------------------- */
+    var clPrettyPrint = function() {
+        $('pre').addClass('prettyprint');
+        $( document ).ready(function() {
+            prettyPrint();
+        });
+    };
+
+
    /* Menu on Scrolldown
     * ------------------------------------------------------ */
     var clMenuOnScrolldown = function() {
         
-        var menuTrigger = $('.header-menu-toggle');
+        var hdr= $('.s-header'),
+            hdrTop = $('.s-header').offset().top;
 
         $WIN.on('scroll', function() {
 
-            if ($WIN.scrollTop() > 150) {
-                menuTrigger.addClass('opaque');
+            if ($WIN.scrollTop() > hdrTop) {
+                hdr.addClass('sticky');
             }
             else {
-                menuTrigger.removeClass('opaque');
+                hdr.removeClass('sticky');
             }
 
         });
     };
 
 
-   /* OffCanvas Menu
-    * ------------------------------------------------------ */
-    var clOffCanvas = function() {
+   /* Mobile Menu
+    * ---------------------------------------------------- */ 
+    var clMobileMenu = function() {
 
-        var menuTrigger     = $('.header-menu-toggle'),
-            nav             = $('.header-nav'),
-            closeButton     = nav.find('.header-nav__close'),
-            siteBody        = $('body'),
-            mainContents    = $('section, footer');
+        var toggleButton = $('.header-menu-toggle'),
+            nav = $('.header-nav-wrap');
 
-        // open-close menu by clicking on the menu icon
-        menuTrigger.on('click', function(e){
-            e.preventDefault();
-            // menuTrigger.toggleClass('is-clicked');
-            siteBody.toggleClass('menu-is-open');
+        toggleButton.on('click', function(event){
+            event.preventDefault();
+
+            toggleButton.toggleClass('is-clicked');
+            nav.slideToggle();
         });
 
-        // close menu by clicking the close button
-        closeButton.on('click', function(e){
-            e.preventDefault();
-            menuTrigger.trigger('click');	
+        if (toggleButton.is(':visible')) nav.addClass('mobile');
+
+        $WIN.on('resize', function() {
+            if (toggleButton.is(':visible')) nav.addClass('mobile');
+            else nav.removeClass('mobile');
         });
 
-        // close menu clicking outside the menu itself
-        siteBody.on('click', function(e){
-            if( !$(e.target).is('.header-nav, .header-nav__content, .header-menu-toggle, .header-menu-toggle span') ) {
-                // menuTrigger.removeClass('is-clicked');
-                siteBody.removeClass('menu-is-open');
+        nav.find('a').on("click", function() {
+
+            if (nav.hasClass('mobile')) {
+                toggleButton.toggleClass('is-clicked');
+                nav.slideToggle(); 
             }
         });
 
     };
 
 
-   /* photoswipe
-    * ----------------------------------------------------- */
-    var clPhotoswipe = function() {
-        var items = [],
-            $pswp = $('.pswp')[0],
-            $folioItems = $('.item-folio');
-
-            // get items
-            $folioItems.each( function(i) {
-
-                var $folio = $(this),
-                    $thumbLink =  $folio.find('.thumb-link'),
-                    $title = $folio.find('.item-folio__title'),
-                    $caption = $folio.find('.item-folio__caption'),
-                    $titleText = '<h4>' + $.trim($title.html()) + '</h4>',
-                    $captionText = $.trim($caption.html()),
-                    $href = $thumbLink.attr('href'),
-                    $size = $thumbLink.data('size').split('x'),
-                    $width  = $size[0],
-                    $height = $size[1];
-         
-                var item = {
-                    src  : $href,
-                    w    : $width,
-                    h    : $height
-                }
-
-                if ($caption.length > 0) {
-                    item.title = $.trim($titleText + $captionText);
-                }
-
-                items.push(item);
-            });
-
-            // bind click event
-            $folioItems.each(function(i) {
-
-                $(this).on('click', function(e) {
-                    e.preventDefault();
-                    var options = {
-                        index: i,
-                        showHideOpacity: true
-                    }
-
-                    // initialize PhotoSwipe
-                    var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
-                    lightBox.init();
-                });
-
-            });
-
-    };
-    
-
-   /* Stat Counter
+   /* Highlight the current section in the navigation bar
     * ------------------------------------------------------ */
-    var clStatCount = function() {
-        
-        var statSection = $(".about-stats"),
-            stats = $(".stats__count");
+    var clWaypoints = function() {
 
-        statSection.waypoint({
+        var sections = $(".target-section"),
+            navigation_links = $(".header-nav-wrap li a");
+
+        sections.waypoint( {
 
             handler: function(direction) {
 
-                if (direction === "down") {
+                var active_section;
 
-                    stats.each(function () {
-                        var $this = $(this);
+                active_section = $('section#' + this.element.id);
 
-                        $({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                            duration: 4000,
-                            easing: 'swing',
-                            step: function (curValue) {
-                                $this.text(Math.ceil(curValue));
-                            }
-                        });
-                    });
+                if (direction === "up") active_section = active_section.prevAll(".target-section").first();
 
-                } 
+                var active_link = $('.header-nav-wrap li a[href="#' + active_section.attr("id") + '"]');
 
-                // trigger once only
-                this.destroy();
+                navigation_links.parent().removeClass("current");
+                active_link.parent().addClass("current");
 
             },
 
-            offset: "90%"
+            offset: '25%'
 
         });
+        
     };
 
 
-   /* Masonry
-    * ---------------------------------------------------- */ 
-    var clMasonryFolio = function () {
+    /* search
+    * ------------------------------------------------------ */
+    var clSearch = function() {
         
-        var containerBricks = $('.masonry');
+        var searchWrap = $('.page-header__search'),
+            searchField = searchWrap.find('.search-field'),
+            closeSearch = searchWrap.find('.page-header__overlay-close'),
+            searchTrigger = $('.page-header__search-trigger'),
+            siteBody = $('body');
 
-        containerBricks.imagesLoaded(function () {
-            containerBricks.masonry({
-                itemSelector: '.masonry__brick',
-                resize: true
-            });
+
+        searchTrigger.on('click', function(e) {
+            
+            e.preventDefault();
+            e.stopPropagation();
+        
+            var $this = $(this);
+        
+            siteBody.addClass('search-is-visible');
+            setTimeout(function(){
+                searchWrap.find('.search-field').focus();
+            }, 100);
+        
         });
+
+        closeSearch.on('click', function(e) {
+
+            var $this = $(this);
+        
+            e.stopPropagation(); 
+        
+            if(siteBody.hasClass('search-is-visible')){
+                siteBody.removeClass('search-is-visible');
+                setTimeout(function(){
+                    searchWrap.find('.search-field').blur();
+                }, 100);
+            }
+        });
+
+        searchWrap.on('click',  function(e) {
+            if( !$(e.target).is('.search-field') ) {
+                closeSearch.trigger('click');
+            }
+        });
+            
+        searchField.on('click', function(e){
+            e.stopPropagation();
+        });
+            
+        searchField.attr({placeholder: 'Type Keywords', autocomplete: 'off'});
+
     };
 
 
    /* slick slider
     * ------------------------------------------------------ */
     var clSlickSlider = function() {
-
-        $('.clients').slick({
+        
+        $('.about-desc__slider').slick({
             arrows: false,
             dots: true,
             infinite: true,
-            slidesToShow: 6,
-            slidesToScroll: 2,
-            //autoplay: true,
-            pauseOnFocus: false,
-            autoplaySpeed: 1000,
-            responsive: [
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 5
-                    }
-                },
-                {
-                    breakpoint: 1000,
-                    settings: {
-                        slidesToShow: 4
-                    }
-                },
-                {
-                    breakpoint: 800,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 500,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                }
-
-            ]
-        });
-
-        $('.testimonials').slick({
-            arrows: true,
-            dots: false,
-            infinite: true,
-            slidesToShow: 1,
+            slidesToShow: 3,
             slidesToScroll: 1,
-            adaptiveHeight: true,
             pauseOnFocus: false,
             autoplaySpeed: 1500,
             responsive: [
                 {
-                    breakpoint: 900,
+                    breakpoint: 1000,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: 2,
                         slidesToScroll: 1
                     }
                 },
                 {
-                    breakpoint: 800,
+                    breakpoint: 601,
                     settings: {
-                        arrows: false,
-                        dots: true
+                        slidesToShow: 1,
+                        slidesToScroll: 1
                     }
                 }
             ]
         });
-    
+
+        $('.testimonials__slider').slick({
+            arrows: false,
+            dots: true,
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            pauseOnFocus: false,
+            autoplaySpeed: 1500,
+            responsive: [
+                {
+                    breakpoint: 1001,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
     };
+
 
    /* Smooth Scrolling
     * ------------------------------------------------------ */
@@ -305,13 +270,6 @@
     };
 
 
-   /* Placeholder Plugin Settings
-    * ------------------------------------------------------ */
-    var clPlaceholder = function() {
-        $('input, textarea, select').placeholder();  
-    };
-
-
    /* Alert Boxes
     * ------------------------------------------------------ */
     var clAlertBoxes = function() {
@@ -320,60 +278,6 @@
             $(this).parent().fadeOut(500);
         }); 
 
-    };
-
-
-   /* Contact Form
-    * ------------------------------------------------------ */
-    var clContactForm = function() {
-        
-        /* local validation */
-        $('#contactForm').validate({
-        
-            /* submit via ajax */
-            submitHandler: function(form) {
-    
-                var sLoader = $('.submit-loader');
-    
-                $.ajax({
-    
-                    type: "POST",
-                    url: "inc/sendEmail.php",
-                    data: $(form).serialize(),
-                    beforeSend: function() { 
-    
-                        sLoader.slideDown("slow");
-    
-                    },
-                    success: function(msg) {
-    
-                        // Message was sent
-                        if (msg == 'OK') {
-                            sLoader.slideUp("slow"); 
-                            $('.message-warning').fadeOut();
-                            $('#contactForm').fadeOut();
-                            $('.message-success').fadeIn();
-                        }
-                        // There was an error
-                        else {
-                            sLoader.slideUp("slow"); 
-                            $('.message-warning').html(msg);
-                            $('.message-warning').slideDown("slow");
-                        }
-    
-                    },
-                    error: function() {
-    
-                        sLoader.slideUp("slow"); 
-                        $('.message-warning').html("Something went wrong. Please try again.");
-                        $('.message-warning').slideDown("slow");
-    
-                    }
-    
-                });
-            }
-    
-        });
     };
 
 
@@ -390,6 +294,26 @@
             disable: 'mobile'
         });
 
+    };
+
+
+    /* Back to Top
+    * ------------------------------------------------------ */
+    var clBackToTop = function() {
+        
+    var pxShow      = 500,
+        goTopButton = $(".go-top")
+
+        // Show or hide the button
+        if ($(window).scrollTop() >= pxShow) goTopButton.addClass('link-is-visible');
+
+        $(window).on('scroll', function() {
+            if ($(window).scrollTop() >= pxShow) {
+                if(!goTopButton.hasClass('link-is-visible')) goTopButton.addClass('link-is-visible')
+            } else {
+                goTopButton.removeClass('link-is-visible')
+            }
+        });
     };
 
 
@@ -415,58 +339,33 @@
 
         $.ajaxChimp.translations.es = {
             'submit': 'Submitting...',
-            0: '<i class="fa fa-check"></i> We have sent you a confirmation email',
-            1: '<i class="fa fa-warning"></i> You must enter a valid e-mail address.',
-            2: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-            3: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-            4: '<i class="fa fa-warning"></i> E-mail address is not valid.',
-            5: '<i class="fa fa-warning"></i> E-mail address is not valid.'
-        } 
-
-    };
-
-
-   /* Back to Top
-    * ------------------------------------------------------ */
-    var clBackToTop = function() {
-        
-        var pxShow  = 500,         // height on which the button will show
-        fadeInTime  = 400,         // how slow/fast you want the button to show
-        fadeOutTime = 400,         // how slow/fast you want the button to hide
-        scrollSpeed = 300,         // how slow/fast you want the button to scroll to top. can be a value, 'slow', 'normal' or 'fast'
-        goTopButton = $(".go-top")
-        
-        // Show or hide the sticky footer button
-        $(window).on('scroll', function() {
-            if ($(window).scrollTop() >= pxShow) {
-                goTopButton.fadeIn(fadeInTime);
-            } else {
-                goTopButton.fadeOut(fadeOutTime);
-            }
-        });
+            0: '<i class="fas fa-check"></i> We have sent you a confirmation email',
+            1: '<i class="fas fa-exclamation-triangle"></i> You must enter a valid e-mail address.',
+            2: '<i class="fas fa-exclamation-triangle"></i> E-mail address is not valid.',
+            3: '<i class="fas fa-exclamation-triangle"></i> E-mail address is not valid.',
+            4: '<i class="fas fa-exclamation-triangle"></i> E-mail address is not valid.',
+            5: '<i class="fas fa-exclamation-triangle"></i> E-mail address is not valid.'
+        }
     };
 
 
    /* Initialize
     * ------------------------------------------------------ */
-    (function ssInit() {
-        
+    (function clInit() {
+
         clPreloader();
+        clPrettyPrint();
         clMenuOnScrolldown();
-        clOffCanvas();
-        clPhotoswipe();
-        clStatCount();
-        clMasonryFolio();
+        clMobileMenu();
+        clWaypoints();
+        clSearch();
         clSlickSlider();
         clSmoothScroll();
-        clPlaceholder();
         clAlertBoxes();
-        clContactForm();
         clAOS();
-        clAjaxChimp();
         clBackToTop();
+        clAjaxChimp();
 
     })();
-        
-        
+
 })(jQuery);
