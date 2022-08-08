@@ -1378,9 +1378,6 @@ ol.linenums {
 
 /* Alternate shading for lines */
 
-/*# sourceMappingURL=vendor.css.map */
-@charset "UTF-8";
-
 /* =================================================================== 
  *
  *  Standout v1.0 Main Stylesheet
@@ -2944,7 +2941,7 @@ input::-moz-focus-inner {
 
 .header-nav-wrap .header-social li {
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   padding: 0;
   margin-right: 4px;
 }
