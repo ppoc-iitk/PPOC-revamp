@@ -1,0 +1,219 @@
+.header-section {
+	margin-bottom: 50px;
+}
+.header-section .small-title {
+    margin-bottom: 25px;
+	font-size: 16px;
+    font-weight: 500;
+    color: #3e64ff;
+}
+.header-section .title {
+    font-weight: 700;
+    font-size: 45px;
+}.single-person {
+	margin-top: 30px;
+	padding: 30px;
+	background-color: #f6f9ff;
+	border-radius: 5px;
+    width: 250px;
+}
+.single-person:hover {
+	background: linear-gradient(to right, #00A650, #58f27e);
+}
+.single-person .person-image {
+    position: relative;
+    margin-bottom: 50px;
+    border-radius: 50%;
+    border: 4px dashed transparent;
+    transition: padding .3s;
+}
+.single-person:hover .person-image {
+	padding: 12px;
+    border: 4px dashed #fff;
+}
+.single-person .person-image img {
+	width: 100%;
+    border-radius: 50%;
+}
+.single-person .person-image .icon {
+	position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    /* background: linear-gradient(to right, #016cec, #00b5f7); */
+    background-color: #fff;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+}
+.single-person:hover .person-image .icon {
+	background: none;
+	background-color: #fff;
+	color: #016cec;
+}
+.single-person .person-info .full-name {
+	margin-bottom: 10px;
+	font-size: 28px;
+    font-weight: 700;
+}
+.single-person .person-info .speciality {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #016cec;
+}
+.single-person:hover .full-name,
+.single-person:hover .speciality {
+	color: #fff;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+.events_container {
+  display: flex;
+  width: 1040px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.events_card {
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+}
+.events_card-header img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.events_card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 250px;
+}
+
+.tag {
+  background: #cccccc;
+  border-radius: 50px;
+  font-size: 12px;
+  margin: 0;
+  color: #fff;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.tag-teal {
+  background-color: #47bcd4;
+}
+.tag-purple {
+  background-color: #5e76bf;
+}
+.tag-pink {
+  background-color: #cd5b9f;
+}
+
+.events_card-body p {
+  font-size: 13px;
+  margin: 0 0 40px;
+}
+.user {
+  display: flex;
+  margin-top: auto;
+}
+
+.user img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.user-info h5 {
+  margin: 0;
+}
+.user-info small {
+  color: #545d7a;
+}
+.sponsors-marquee {
+    width: 100%;
+    height: 15vw;
+    border: 5px solid #00A650;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.sponsors-marquee .sponsors {
+    display: flex;
+    list-style: none;
+    padding: 2.5vw;
+    animation: scrolling 15s linear infinite;
+}
+.sponsors-marquee .sponsors li {
+    flex: 0 0 10vw;
+    margin: 0 1vw;
+    flex-shrink: 0;
+}
+.sponsors-marquee .sponsors li img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+@keyframes scrolling {
+    0% {
+        transform: translateX(0);
+   }
+    100% {
+        transform: translatex(-156vw);
+   }
+}
+.sponsors-marquee {
+    width: 100%;
+    height: 15vw;
+    border: 5px solid #00A650;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+  }
+  .sponsors-marquee .sponsors {
+    display: flex;
+    list-style: none;
+    padding: 2.5vw;
+    -webkit-animation: scrolling 15s linear infinite;
+            animation: scrolling 15s linear infinite;
+  }
+  .sponsors-marquee .sponsors li {
+    flex: 0 0 10vw;
+    margin: 0 1vw;
+    flex-shrink: 0;
+  }
+  .sponsors-marquee .sponsors li img {
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+  @-webkit-keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translatex(-156vw);
+    }
+  }
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translatex(-156vw);
+    }
+  }
