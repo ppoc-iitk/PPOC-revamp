@@ -2884,8 +2884,7 @@ input::-moz-focus-inner {
 }
 
 .header-logo img {
-  width: 140px;
-  height: 16px;
+  width: 160px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -3255,7 +3254,7 @@ input::-moz-focus-inner {
   content: "";
   width: calc(50% - 200px);
   height: 100vh;
-  background-image: url(../images/app-user.jpg);
+  /* background-image: url(../images/app-user.jpg); */
   background-origin: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -4507,7 +4506,6 @@ html.cl-loaded .home-content__main {
  *
  * ------------------------------------------------------------------- */
 .s-footer {
-  padding-top: 16rem;
   padding-bottom: 12rem;
   color: rgba(255, 255, 255, 0.4);
   position: relative;
@@ -4658,7 +4656,6 @@ html.cl-loaded .home-content__main {
 
 .footer__logo img {
   width: 135px;
-  height: 15px;
 }
 
 /* ------------------------------------------------------------------- 
