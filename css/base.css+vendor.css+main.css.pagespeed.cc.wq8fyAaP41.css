@@ -4152,6 +4152,11 @@ html.cl-loaded .home-content__main {
   padding-right: 3rem;
 }
 
+.testimonials__slide_facad {
+  position: relative;
+  padding-left: 170%;
+}
+
 .testimonials__avatar {
   width: 10rem;
   height: 10rem;
@@ -4203,6 +4208,10 @@ html.cl-loaded .home-content__main {
 
   .testimonials__slide {
     padding-left: 3rem;
+  }
+
+  .testimonials__slide_facad {
+    padding-left: 45%;
   }
 
   .testimonials__avatar {
