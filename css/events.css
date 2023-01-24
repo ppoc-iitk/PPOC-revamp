@@ -153,7 +153,7 @@
 		 height: 230px;
 	}
 }
-/* sdqwertyuioplkjhgfdsaxbnm */
+
 .container {
     padding: 20px 63px 20px 65px;
   }
@@ -168,6 +168,7 @@
     background-color: #fff;
     transition: box-shadow 300ms ease-in;
 }
+
 @media (min-width: 768px) {
     .card {
         width: calc((100vw - 350px) / 2);
@@ -185,6 +186,8 @@
 .card:hover {
     box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);
 }
+
+
 .img--container {
     position: absolute;
     height: 100%;
@@ -252,4 +255,12 @@
 }
 .text--link:hover {
     color: #d65f8d;
+}
+
+.events_card-body{
+    text-decoration: none;
+}
+
+.events_card-body:hover{
+    text-decoration: none;
 }
