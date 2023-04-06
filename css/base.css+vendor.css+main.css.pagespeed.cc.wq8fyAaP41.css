@@ -3262,6 +3262,10 @@ input::-moz-focus-inner {
   bottom: 0;
 }
 
+.s-home .home-image-part-pc {
+  background-image: url(../events/PolicyConclave/1.png);
+}
+
 /* ------------------------------------------------------------------- 
  * ## home content
  * ------------------------------------------------------------------- */
